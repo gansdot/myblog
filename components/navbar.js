@@ -27,7 +27,14 @@ const Navigation = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Link href="/">
-                <Navbar.Brand href="home">CodeGans</Navbar.Brand>
+                <Navbar.Brand href="home">
+                  <img
+                    src="./logo.jpeg"
+                    width="75px"
+                    height="35px"
+                    alt="logo"
+                  />
+                </Navbar.Brand>
               </Link>
 
               <Link href="/post/[id]" as="/post/1">

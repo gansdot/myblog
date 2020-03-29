@@ -123,7 +123,7 @@ const Index = props => {
                   src={blog.image}
                   alt="Blog Image"
                   width="600"
-                  height="400"
+                  height="390"
                 />
               </Row>
               <Row>

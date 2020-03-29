@@ -46,7 +46,7 @@ const Admin = ({ data }) => {
   }, [variant, message]);
 
   function handleSubmit(event) {
-    if (!(image === null || image === "")) {
+    if (filename !== "Choose file to upload") {
       //console.log("inside handleSubmit ******** " + JSON.stringify(blog));
       setValidated(false);
       persistBlog();
