@@ -1,15 +1,41 @@
 {
   "name": "my-next-blog",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "this is my blog on the code stuff",
+  "main": "index.js",
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "next": "^9.3.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "next-images": "^1.3.1",
+    "react-avatar": "^3.9.2",
+    "react-image-file-resizer": "^0.2.1",
+    "bootstrap": "^4.4.1",
+    "mongodb": "^3.5.5",
+    "react-bootstrap": "^1.0.0",
+    "next-connect": "^0.6.1",
+    "isomorphic-unfetch": "^3.0.0"
+  },
+  "devDependencies": {},
   "scripts": {
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
     "start": "next start"
   },
-  "dependencies": {
-    "next": "9.3.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gansdot/myblog.git"
+  },
+  "keywords": [
+    "blog",
+    "codeblog",
+    "myblog"
+  ],
+  "author": "Ganesan Mariappan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gansdot/myblog/issues"
+  },
+  "homepage": "https://github.com/gansdot/myblog#readme"
 }
