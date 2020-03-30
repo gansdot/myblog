@@ -17,13 +17,17 @@ const style = {
 };
 
 const Admin = ({ data }) => {
+  const filemsg =
+    "For higher resolution, select Image checkbox and paste the file path here.";
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false);
   const [invalid, setInvalid] = useState(false);
   const [variant, setVariant] = useState("success");
   const [message, setMessage] = useState("saved successfully. Stay cool.");
   const [image, setImage] = useState();
-  const [filename, setFilename] = useState("Choose file to upload");
+  const [filename, setFilename] = useState(filemsg);
+  const [controlType, setControlType] = useState("file");
+  const [isChecked, setIsChecked] = useState(false);
   const [blog, setBlog] = useState({
     id: "",
     blogCategory: "",
@@ -32,7 +36,8 @@ const Admin = ({ data }) => {
     postedOn: "",
     author: "",
     blogImage: "",
-    blogText: ""
+    blogText: "",
+    isBinary: "file"
   });
 
   useEffect(() => {
@@ -46,7 +51,7 @@ const Admin = ({ data }) => {
   }, [variant, message]);
 
   function handleSubmit(event) {
-    if (filename !== "Choose file to upload") {
+    if (filename !== filemsg) {
       //console.log("inside handleSubmit ******** " + JSON.stringify(blog));
       setValidated(false);
       persistBlog();
@@ -63,16 +68,18 @@ const Admin = ({ data }) => {
       //const formData = new FormData();
       //formData.append("image", image);
 
-      //onsole.log("inside persist blog ******** " + JSON.stringify(image));
+      const apiurl = controlType === "file" ? "blogs" : "upload";
+      const isBinary = controlType === "file" ? "yes" : "no";
+      const imagedata = controlType === "file" ? image : filename;
 
-      const response = await fetch("http://localhost:3000/api/blogs", {
+      const response = await fetch("http://localhost:3000/api/" + apiurl, {
         mode: "no-cors",
         method: "POST",
         headers: {
           "Content-Type": "multipart/form-data",
           type: "formData"
         },
-        body: JSON.stringify({ ...blog, image: image })
+        body: JSON.stringify({ ...blog, image: imagedata, isBinary })
       });
       const result = await response.json();
     } catch (error) {
@@ -80,14 +87,28 @@ const Admin = ({ data }) => {
     }
   };
 
+  useEffect(() => {
+    if (!isChecked) {
+      console.log("after render filename " + filename);
+      setFilename(filename);
+    }
+  }, [isChecked]);
   const onChange = e => {
     setBlog({ ...blog, [e.target.name]: e.target.value });
   };
+  const chooseFileControl = e => {
+    console.log(e.target.value);
+    setIsChecked(!isChecked);
+    setControlType(!isChecked ? "text" : "file");
 
+    setFilename(filename !== filemsg ? "" : filename);
+  };
   const handleChange = e => {
     var fileInput = false;
-    if (e.target.files[0]) {
+    if (controlType === "file" && e.target.files[0]) {
       fileInput = true;
+    } else {
+      setFilename(e.target.value);
     }
     if (fileInput) {
       setFilename(e.target.files[0].name);
@@ -219,18 +240,26 @@ const Admin = ({ data }) => {
             </InputGroup> */}
             {/* </>
             )} */}
-            <div className="input-group mb-3">
+            <div className="input-group mb-3" alt={filemsg}>
               <div className="input-group-prepend">
                 <span
                   className="input-group-text"
                   style={{ width: "100px", textAlign: "right" }}
                 >
-                  Upload
+                  Image
+                  <div style={{ width: "80%", marginBottom: "1px" }}>
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={chooseFileControl}
+                      aria-label="Checkbox for following text input"
+                    />
+                  </div>
                 </span>
               </div>
               <div className="custom-file">
                 <input
-                  type="file"
+                  type={controlType}
                   className="custom-file-input"
                   onChange={handleChange}
                   id="blogImage"

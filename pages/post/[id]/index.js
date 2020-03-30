@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Layout from "../../../components/layout";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Avatar from "react-avatar";
@@ -62,6 +63,7 @@ const sideBarHeading = {
 };
 
 const Index = props => {
+  let imageTag = "/";
   const router = useRouter();
   const { id } = router.query;
 
@@ -118,13 +120,25 @@ const Index = props => {
                 </Col>
               </Row>
               <Row>
-                <img
-                  //className="rounded"
-                  src={blog.image}
-                  alt="Blog Image"
+                {/* <img
+                  className="img-fluid"
+                  src={"/" + blog.image}
+                  alt="img"
+                  //src={`/${blog.image}`}
                   width="600"
                   height="390"
-                />
+                /> */}
+                <figure class="figure">
+                  <img
+                    src={"/" + blog.image}
+                    className="figure-img img-fluid rounded"
+                    width="600"
+                    height="390"
+                  />
+                  <figcaption className="figure-caption">
+                    {blog.blogTitle}
+                  </figcaption>
+                </figure>
               </Row>
               <Row>
                 <div style={{ width: "96%" }}>
@@ -157,9 +171,9 @@ const Index = props => {
                     <img
                       key={b.blogTitle}
                       style={{ float: "left" }}
-                      className=" border border-info"
+                      className="img-fluid img-thumbnail"
                       //src={"/static/" + b.blogImage}
-                      src={b.image}
+                      src={"/" + b.image}
                       width="66"
                       height="42"
                     />

@@ -28,12 +28,7 @@ const Navigation = () => {
             <Nav className="mr-auto">
               <Link href="/">
                 <Navbar.Brand href="home">
-                  <img
-                    src="./logo.jpeg"
-                    width="75px"
-                    height="35px"
-                    alt="logo"
-                  />
+                  <img src="/logo.jpeg" width="75px" height="35px" alt="logo" />
                 </Navbar.Brand>
               </Link>
 

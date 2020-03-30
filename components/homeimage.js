@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image from "react-bootstrap/Image";
 
 const HomeImage = ({ blog, imgIndex }) => {
   const [image, setImage] = useState("../public/cow.jpg");
@@ -10,8 +11,10 @@ const HomeImage = ({ blog, imgIndex }) => {
 
   return (
     <img
-      src={image}
-      className="text-center"
+      //src={image}
+      src={"/" + image}
+      //src={`/${image}`}
+      className="text-center img-fluid"
       width="340"
       height="230"
       style={{ margin: "0px 40px 40px 30px" }}

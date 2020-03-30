@@ -87,8 +87,8 @@ function useTitle(index, blog) {
   };
 }
 function useImage(index, blog) {
-  //const [image, setImage] = useState("../public/cow.jpg");
   const [image, setImage] = useState("../public/cow.jpg");
+  console.log("image value " + image);
   useEffect(() => {
     setImage(
       blog.length >= index ? blog[index - 1].image : "../public/lon_b.jpg"
