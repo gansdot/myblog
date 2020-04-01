@@ -65,9 +65,6 @@ const Admin = ({ data }) => {
 
   const persistBlog = async () => {
     try {
-      //const formData = new FormData();
-      //formData.append("image", image);
-
       const apiurl = controlType === "file" ? "blogs" : "upload";
       const isBinary = controlType === "file" ? "yes" : "no";
       const imagedata = controlType === "file" ? image : filename;

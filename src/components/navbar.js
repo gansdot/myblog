@@ -56,10 +56,11 @@ const Navigation = () => {
             <Form inline>
               <FormControl
                 type="text"
+                size="sm"
                 placeholder="Search"
                 className="mr-sm-3"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button variant="outline-success btn-sm">Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>
